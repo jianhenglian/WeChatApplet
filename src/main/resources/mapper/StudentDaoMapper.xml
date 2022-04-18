@@ -1,0 +1,20 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.nju.dao.StudentDao">
+    <insert id="addStudent" parameterType="edu.nju.domain.Student">
+        insert into Test.students(name, id, age, gender) VALUES (#{name}, #{id}, #{age}, #{gender})
+    </insert>
+    <delete id="deleteStudent" parameterType="java.lang.Integer">
+        delete from Test.students where id = #{id}
+    </delete>
+    <update id="updateStudent" parameterType="edu.nju.domain.Student">
+        update Test.students set name=#{name}, age=#{age}, gender=#{gender} where id=#{id}
+    </update>
+    <select id="selectStudentById" resultType="edu.nju.domain.Student">
+        select * from Test.students where id=#{id}
+    </select>
+    <select id="selectAllStudents" resultType="edu.nju.domain.Student">
+        select * from Test.students
+    </select>
+</mapper>
