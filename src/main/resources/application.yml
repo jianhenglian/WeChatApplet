@@ -5,13 +5,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${MYSQL_ADDRESS}/${MYSQL_DATABASE:springboot_demo}
-    username: ${MYSQL_USERNAME}
-    password: ${MySQL_PASSWORD}
-  mvc:
-    view:
-      suffix: .html
-      prefix: /
+    url: jdbc:mysql://sh-cynosdbmysql-grp-2v5jxp98.sql.tencentcdb.com:26135/Test?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
+    username: root
+    password: WeChat_2022
 
 mybatis:
   mapper-locations: classpath*:mapper/*Mapper.xml
