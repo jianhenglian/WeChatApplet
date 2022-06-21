@@ -1,13 +1,14 @@
+weixin:
+  appid: wxc5c699af7ce21427
+  appsecret: 32e0827fdaa943f3405323f27114116e
 server:
-  port: 80
-
-
+  port: 8000
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://sh-cynosdbmysql-grp-2v5jxp98.sql.tencentcdb.com:26135/Test?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
     username: root
-    password: WeChat_2022
-
-mybatis:
-  mapper-locations: classpath*:mapper/*Mapper.xml
+    password: CS_CS_1Q84_wWw
+    url: jdbc:mysql://localhost:3306/nnt?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+elasticsearch:
+  host: 139.196.157.116
+  port: 9200
