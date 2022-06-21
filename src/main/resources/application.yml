@@ -1,14 +1,14 @@
-weixin:
-  appid: wxc5c699af7ce21427
-  appsecret: 32e0827fdaa943f3405323f27114116e
 server:
   port: 8000
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/nnt?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: root
     password: CS_CS_1Q84_wWw
-    url: jdbc:mysql://localhost:3306/nnt?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+weixin:
+  appid: wxc5c699af7ce21427
+  appsecret: 32e0827fdaa943f3405323f27114116e
 elasticsearch:
   host: 139.196.157.116
   port: 9200

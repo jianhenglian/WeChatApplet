@@ -8,11 +8,16 @@
         <version>2.5.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
-    <artifactId>nnt</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>nnt</name>
-    <description>nnt</description>
+<!--    <groupId>com.example</groupId>-->
+<!--    <artifactId>nnt</artifactId>-->
+<!--    <version>0.0.1-SNAPSHOT</version>-->
+<!--    <name>nnt</name>-->
+<!--    <description>nnt</description>-->
+    <groupId>com.tencent</groupId>
+    <artifactId>springboot-wxcloudrun</artifactId>
+    <version>1.0</version>
+    <name>springboot-wxcloudrun</name>
+    <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>
