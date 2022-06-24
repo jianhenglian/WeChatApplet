@@ -69,43 +69,43 @@ class ElasticsearchDemoApplicationTests {
 
 
     }
-
-
-    /**
-     * 添加索引
-     */
-    @Test
-    public void addIndexAndMapping() throws IOException {
-        //1.使用client获取操作索引的对象
-        IndicesClient indicesClient = client.indices();
-        //2.具体操作，获取返回值
-        CreateIndexRequest createRequest = new CreateIndexRequest("itcast");
-        //2.1 设置mappings
-        String mapping = "{\n" +
-                "      \"properties\" : {\n" +
-                "        \"address\" : {\n" +
-                "          \"type\" : \"text\",\n" +
-                "          \"analyzer\" : \"ik_max_word\"\n" +
-                "        },\n" +
-                "        \"age\" : {\n" +
-                "          \"type\" : \"long\"\n" +
-                "        },\n" +
-                "        \"name\" : {\n" +
-                "          \"type\" : \"keyword\"\n" +
-                "        }\n" +
-                "      }\n" +
-                "    }";
-        createRequest.mapping(mapping,XContentType.JSON);
-
-
-        CreateIndexResponse response = indicesClient.create(createRequest, RequestOptions.DEFAULT);
-
-        //3.根据返回值判断结果
-        System.out.println(response.isAcknowledged());
-
-
-
-    }
+//
+//
+//    /**
+//     * 添加索引
+//     */
+//    @Test
+//    public void addIndexAndMapping() throws IOException {
+//        //1.使用client获取操作索引的对象
+//        IndicesClient indicesClient = client.indices();
+//        //2.具体操作，获取返回值
+//        CreateIndexRequest createRequest = new CreateIndexRequest("itcast");
+//        //2.1 设置mappings
+//        String mapping = "{\n" +
+//                "      \"properties\" : {\n" +
+//                "        \"address\" : {\n" +
+//                "          \"type\" : \"text\",\n" +
+//                "          \"analyzer\" : \"ik_max_word\"\n" +
+//                "        },\n" +
+//                "        \"age\" : {\n" +
+//                "          \"type\" : \"long\"\n" +
+//                "        },\n" +
+//                "        \"name\" : {\n" +
+//                "          \"type\" : \"keyword\"\n" +
+//                "        }\n" +
+//                "      }\n" +
+//                "    }";
+//        createRequest.mapping(mapping,XContentType.JSON);
+//
+//
+//        CreateIndexResponse response = indicesClient.create(createRequest, RequestOptions.DEFAULT);
+//
+//        //3.根据返回值判断结果
+//        System.out.println(response.isAcknowledged());
+//
+//
+//
+//    }
 
 
     /**
@@ -251,4 +251,5 @@ class ElasticsearchDemoApplicationTests {
     }
 
 }
+
 
