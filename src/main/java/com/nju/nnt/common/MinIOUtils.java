@@ -33,7 +33,7 @@ public class MinIOUtils {
     public static String upLoadFile(MultipartFile file, User user) throws IOException, ServerException, InsufficientDataException, ErrorResponseException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
         MinioClient minioClient = getMinIOClient();
         String openId = user.getOpenId();
-        long hashNum = openId.hashCode()%4;
+        long hashNum = openId.hashCode()%4 + 1;
         minioClient.putObject(PutObjectArgs.builder().bucket(BUCKET_PREFIX+hashNum)
                 .object(file.getOriginalFilename())
                 .stream(file.getInputStream(), file.getInputStream().available(),-1)

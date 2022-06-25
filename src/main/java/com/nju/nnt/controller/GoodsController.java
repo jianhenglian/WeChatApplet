@@ -44,6 +44,7 @@ public class GoodsController {
     @RequestMapping("/upload")
     public Response upLoadImage(@RequestParam("file") MultipartFile file, @RequestParam("token")String token){
         log.info("用户token为{}",token);
+        log.info("发来的文件信息是 {}", file.getOriginalFilename());
         User infoFromToken;
         try {
             infoFromToken = JWTUtil.getInfoFromToken(token);
