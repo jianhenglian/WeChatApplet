@@ -60,15 +60,15 @@ public class ChatController {
         message.setMsg(msg);
         message.setK(k);
         message.setMsgId(new SnowflakeIdWorker(0,0).nextId());
-        if(OnlineUserSession.getChannel(toId) == null){
-            log.info("接受者不在线,将消息暂时缓存到redis中");
-            JedisUtil.getJedisClient().lpush("nnt-"+toId,JSON.toJSONString(message));
-
-        }else{
-            log.info("接受者在线,进行消息推送");
-            Channel toChannel = OnlineUserSession.getChannel(toId);
-            toChannel.writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(message)));
-        }
+//        if(OnlineUserSession.getChannel(toId) == null){
+//            log.info("接受者不在线,将消息暂时缓存到redis中");
+//            JedisUtil.getJedisClient().lpush("nnt-"+toId,JSON.toJSONString(message));
+//
+//        }else{
+//            log.info("接受者在线,进行消息推送");
+//            Channel toChannel = OnlineUserSession.getChannel(toId);
+//            toChannel.writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(message)));
+//        }
         messageService.insertMessage(message);
         return Response.success("发送消息成功");
     }

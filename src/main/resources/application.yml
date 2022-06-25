@@ -2,7 +2,7 @@ weixin:
   appid: wxc5c699af7ce21427
   appsecret: 32e0827fdaa943f3405323f27114116e
 server:
-  port: 8000
+  port: 80
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

@@ -29,6 +29,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 @Slf4j
 @Service
 public class GoodsServiceImpl implements GoodsService {
@@ -59,50 +61,54 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public List<Goods> getGoodsList(int page, int size, Map<String, Object> conditionMap) {
         //2. 构建查询请求对象，指定查询的索引名称
-        SearchRequest searchRequest = new SearchRequest("nnt_goods");
-        //4. 创建查询条件构建器SearchSourceBuilder
-        SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
+//        SearchRequest searchRequest = new SearchRequest("nnt_goods");
+//        //4. 创建查询条件构建器SearchSourceBuilder
+//        SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
+//
+//        //6. 查询条件
+//        QueryBuilder query = QueryBuilders.matchQuery("goodsDetail",conditionMap.get("keyword"));//查询所有文档
+//        //5. 指定查询条件
+//        sourceBuilder.query(query);
+//
+//        //3. 添加查询条件构建器 SearchSourceBuilder
+//        searchRequest.source(sourceBuilder);
+//
+//        // 8 . 添加分页信息
+//        sourceBuilder.from((page-1)*size);
+//        sourceBuilder.size(size);
+//
+//        //1. 查询,获取查询结果
+//        SearchResponse searchResponse = null;
+//        try {
+//            searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
+//        } catch (IOException e) {
+//            log.error("查询失败");
+//            e.printStackTrace();
+//        }
+//
+//        //7. 获取命中对象 SearchHits
+//        SearchHits searchHits = searchResponse.getHits();
+//        List<Goods> goodsList = new ArrayList<>();
+//        //7.2 获取Hits数据  数组
+//        SearchHit[] hits = searchHits.getHits();
+//        for (SearchHit hit : hits) {
+//            //获取json字符串格式的数据
+//            String sourceAsString = hit.getSourceAsString();
+//            //转为java对象
+//            Goods goods = JSON.parseObject(sourceAsString, Goods.class);
+//            goods.setImageUrls("http://139.196.157.116:9000/"+goods.getImageUrls().split("-")[0]);
+//            goodsList.add(goods);
+//        }
 
-        //6. 查询条件
-        QueryBuilder query = QueryBuilders.matchQuery("goodsDetail",conditionMap.get("keyword"));//查询所有文档
-        //5. 指定查询条件
-        sourceBuilder.query(query);
+        String keyWord = conditionMap.get("keyword").toString();
+        log.info("keyword: {}", keyWord);
+        List<Goods> goods1 = goodsMapper.selectList(new QueryWrapper<>());
+        goods1 = goods1.stream().filter(item -> item.getGoodsDetail().contains(keyWord)).collect(Collectors.toList());
 
-        //3. 添加查询条件构建器 SearchSourceBuilder
-        searchRequest.source(sourceBuilder);
-
-        // 8 . 添加分页信息
-        sourceBuilder.from((page-1)*size);
-        sourceBuilder.size(size);
-
-        //1. 查询,获取查询结果
-        SearchResponse searchResponse = null;
-        try {
-            searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
-        } catch (IOException e) {
-            log.error("查询失败");
-            e.printStackTrace();
-        }
-
-        //7. 获取命中对象 SearchHits
-        SearchHits searchHits = searchResponse.getHits();
-        List<Goods> goodsList = new ArrayList<>();
-        //7.2 获取Hits数据  数组
-        SearchHit[] hits = searchHits.getHits();
-        for (SearchHit hit : hits) {
-            //获取json字符串格式的数据
-            String sourceAsString = hit.getSourceAsString();
-            //转为java对象
-            Goods goods = JSON.parseObject(sourceAsString, Goods.class);
-            goods.setImageUrls("http://139.196.157.116:9000/"+goods.getImageUrls().split("-")[0]);
-            goodsList.add(goods);
-        }
-
-
-        for (Goods goods : goodsList) {
+        for (Goods goods : goods1) {
             System.out.println(goods);
         }
-        return goodsList;
+        return goods1;
     }
 
 
