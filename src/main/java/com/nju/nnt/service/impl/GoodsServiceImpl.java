@@ -5,8 +5,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.nju.nnt.entity.Goods;
+import com.nju.nnt.entity.Image;
 import com.nju.nnt.entity.UserCollect;
 import com.nju.nnt.mapper.GoodsMapper;
+import com.nju.nnt.mapper.ImageMapper;
 import com.nju.nnt.service.GoodsService;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.index.IndexRequest;
@@ -39,6 +41,9 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Autowired
     private RestHighLevelClient client;
+
+    @Autowired
+    ImageMapper imageMapper;
 
     @Override
     public void publishGoods(Goods goods) {
@@ -162,5 +167,11 @@ public class GoodsServiceImpl implements GoodsService {
         QueryWrapper<Goods> queryWrapper = new QueryWrapper<>();
         queryWrapper.orderByDesc("publish_time");
         return goodsMapper.selectList(queryWrapper);
+    }
+
+    @Override
+    public List<Image> getAllImageUrls()
+    {
+        return imageMapper.selectList(null);
     }
 }

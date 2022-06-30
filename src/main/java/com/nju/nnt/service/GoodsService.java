@@ -2,6 +2,7 @@ package com.nju.nnt.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.nju.nnt.entity.Goods;
+import com.nju.nnt.entity.Image;
 import com.nju.nnt.entity.UserCollect;
 import org.springframework.stereotype.Service;
 
@@ -25,4 +26,6 @@ public interface GoodsService {
     List<Goods> listAllGoodsByClassify(int classify);
 
     List<Goods> listAllGoodsByTime();
+
+    List<Image> getAllImageUrls();
 }

@@ -55,6 +55,7 @@ public class GoodsController {
         String url;
         try {
            url = MinIOUtils.upLoadFile(file,infoFromToken);
+           log.info("图片信息为：{}",url);
         } catch (Exception e) {
             e.printStackTrace();
             log.error("文件上传失败");
@@ -214,6 +215,11 @@ public class GoodsController {
     public Response getAllGoodsOrderByTime()
     {
         return Response.success(goodsService.listAllGoodsByTime());
+    }
+
+    @RequestMapping("/getAllImageUrl")
+    public Response getAllImageUrls(){
+        return Response.success(goodsService.getAllImageUrls());
     }
 
 }
